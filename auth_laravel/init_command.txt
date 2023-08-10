@@ -1,0 +1,61 @@
+1. create laravel project - laravel new lara_auth
+2. Set up database for authentication in phpmyadmin 
+3. install laravel breeze - composer require laravel/breeze:1.9.4
+4. configur laravel breeze - php artisan breeze:install
+5. npm config set legacy-peer-deps true - optional 
+
+    if any error then ->
+        1. rm node_modules
+        2.rm package-lock.json
+        3. npm cache clear -force
+6. npm install
+7. npm run dev
+8. php artisan migrate
+9.php artisan make:model Admin -m
+
+RETRIVING AUTHENTICATE USER
+notes: -> you may access the auth user via the aith facade's user method
+ use Illuminate/Support/Facades/Auth;
+ $user=Auth::user();
+
+ Retrieve the currently authticated user's ID
+ $id=Auth::id();
+ From Request in controller
+ public function update(Request $request){
+    $request->user()
+ }
+
+ 10. make a controller -> php artisan make:controller ShowController
+
+USER IS AUTHENTICATE OR notes
+notes: -> if(Auth::check()){
+
+}
+
+PROTECTING ROUTE 
+notes: -> a. Route middleware can be used to only allow authenticated users to access a given route.
+b. Laravel ships aith an auth middleware , which reference the Illuminate/Auth/Middleware/Authenticate class
+ Route::get('/report,function(){
+    Only For Auth
+ })->middleware('auth);
+
+11. create a blade file name is report.blade.php
+ REDIRECTING UNAUTHENTICAE USER
+ notes: -> 
+ a. Where the auth middleware detects an unauthenticaed user , it will redirect the user to the login named route
+ b. You may modify this behavior by updating the redirectTo function in your application's app/Http/Middleware/Authenticate.php file
+ protected function redirectTo($request){
+    return route('login)
+ }
+12. create a blade file name is unauth.blade.php
+LOGOUT BUTTON
+notes: -> 
+a. To manually log users out of your application you mat use th logout method provided by the auth facade.this will remove the authenticateion information from the users's session so thatsubsequent reuest are not authticated.
+In addition to calling the logout method it is recommended that you invalidate the users's session and regenerate thier CSRF token . After logging the user out , you would typicallyredirect the user to the root of your application 
+use Illuminate/Support/Facades/Auth;
+public function logout(Request$request){
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/);
+}
