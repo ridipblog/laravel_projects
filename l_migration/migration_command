@@ -1,0 +1,6 @@
+1. create table command => php artisan make:migration create_users_table
+2. rollback command => php artisan migrate:rollback
+3. drop table command => php artisan make:migration dropping_users_table
+4. rename table command => php artisan make:migration rename_users_to_user
+5. add column in table command => php artisan make:migration add_email_to_user --table=user
+6. install  composer require doctrine/dbal
