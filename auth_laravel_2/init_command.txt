@@ -1,0 +1,70 @@
+1. create laravel project - laravel new lara_auth
+2. Set up database for authentication in phpmyadmin 
+3. install laravel breeze - composer require laravel/breeze:1.9.4
+4. configur laravel breeze - php artisan breeze:install
+5. npm config set legacy-peer-deps true - optional 
+
+    if any error then ->
+        1. rm node_modules
+        2.rm package-lock.json
+        3. npm cache clear -force
+6. npm install
+7. npm run dev
+8. php artisan migrate
+9.php artisan make:model Admin -m
+10 . changes in  config/auth.php -> 
+11. npm run watch -> for new add css 
+12. Replace User model code  to  Admin model code with extra code ->
+    protected $guard ='admin';
+13.  Edit config/auth.php ->
+
+        'guards' => [
+            'web' => [
+                'driver' => 'session',
+                'provider' => 'users',
+            ],  
+            'admin' => [
+                'driver' => 'session',
+                'provider' => 'admins',
+            ],
+        ],
+
+      'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+    ],
+
+14 . php artisan migrate
+15. copy E:\laravel\learn_laravel\auth_laravel_2\app\Http\Controllers\Auth to E:\laravel\learn_laravel\auth_laravel_2\app\Http\Controllers\Adminauth
+16. change all file namespaces User to Adminauth
+    like E:\laravel\learn_laravel\auth_laravel_2\app\Http\Controllers\Adminauth\AuthenticatedSessionController.php ->
+        namespace App\Http\Controllers\Adminauth;
+17. Edit E:\laravel\learn_laravel\auth_laravel_2\app\Http\Controllers\Adminauth\AuthenticatedSessionController.php ->
+18 . Edit  E:\laravel\learn_laravel\auth_laravel_2\app\Providers\RouteServiceProvider.php -> 
+19 . Duplicate E:\laravel\learn_laravel\auth_laravel_2\app\Http\Requests\Auth to E:\laravel\learn_laravel\auth_laravel_2\app\Http\Requests\Adminauth
+20. Edit E:\laravel\learn_laravel\auth_laravel_2\app\Http\Requests\Adminauth\LoginRequest.php -> 
+21. Edit E:\laravel\learn_laravel\auth_laravel_2\app\Http\Controllers\Adminauth\AuthenticatedSessionController.php ->
+22. Edit E:\laravel\learn_laravel\auth_laravel_2\app\Http\Controllers\Adminauth\RegisteredUserController.php -> 
+23. Edit E:\laravel\learn_laravel\auth_laravel_2\routes\web.php -> 
+24. Copy E:\laravel\learn_laravel\auth_laravel_2\routes\auth.php to E:\laravel\learn_laravel\auth_laravel_2\routes\adminauth.php 
+25. Copy E:\laravel\learn_laravel\auth_laravel_2\resources\views\auth to E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\auth
+26 . Edit E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\auth\login.blade.php
+26 . Edit E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\auth\register.blade.php
+27 . Copy E:\laravel\learn_laravel\auth_laravel_2\resources\views\auth\dashboard.blade.php to E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin]dashboard.blade.php
+28. Copy E:\laravel\learn_laravel\auth_laravel_2\resources\views\auth\layouts to E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\layouts
+29. Copy E:\laravel\learn_laravel\auth_laravel_2\app\View\Components\AppLayout.php to E:\laravel\learn_laravel\auth_laravel_2\app\View\Components\AdminLayout.php
+30. Edit E:\laravel\learn_laravel\auth_laravel_2\app\View\Components\AdminLayout.php ->
+31. Copy E:\laravel\learn_laravel\auth_laravel_2\app\View\Components\GuestLayout.php to E:\laravel\learn_laravel\auth_laravel_2\app\View\Components\AdminGuestLayout.php
+32. Edit E:\laravel\learn_laravel\auth_laravel_2\app\View\Components\AdminGuestLayout.php ->
+33 . Edit E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\auth\login.blade.php ->
+34 . Edit E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\auth\register.blade.php ->
+35 . Edit E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\dashboard.blade.php ->
+36. Edit E:\laravel\learn_laravel\auth_laravel_2\resources\views\welcome.blade.php ->
+37 . Edit E:\laravel\learn_laravel\auth_laravel_2\resources\views\admin\dashboard.blade.php ->
+38. Edit E:\laravel\learn_laravel\auth_laravel_2\app\Http\Middleware\RedirectIfAuthenticated.php ->
