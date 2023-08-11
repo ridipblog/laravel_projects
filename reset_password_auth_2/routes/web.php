@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,18 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [WelcomeController::class, 'create']);
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/user_panel', function () {
+    return view('user_panel');
+})->middleware(['auth'])->name('user_panel');
+
 require __DIR__ . '/auth.php';
-
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin'])->name('admin.dashboard');
-
-require __DIR__ . '/adminauth.php';
