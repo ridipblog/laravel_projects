@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleChatrs;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('user', [UserController::class, 'user_fun']);
-Route::get('/get_page', [UserController::class, 'get_page']);
+
+Route::get('/home', [HomeController::class, 'create']);
+Route::get('/google', [GoogleChatrs::class, 'create']);

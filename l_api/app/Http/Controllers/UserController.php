@@ -10,4 +10,7 @@ class UserController extends Controller
     {
         return view('user');
     }
+    public function get_page(){
+        echo "Get Page";
+    }
 }
