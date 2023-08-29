@@ -1,0 +1,6 @@
+1. create cron via commmand -> php artisan make:commmand StatusUpadte
+2.Create A Model -> php artisan make:model Employes
+3. Edit app\console\commands\StatusUpadte->
+4. run  this command -> php artisan employe:statusUpdate
+5. Edit Kernel.php
+6. run this to schedule commands php artisan schedule:run
