@@ -1,0 +1,30 @@
+1. configgure in console.cloud.google -> oauthClientid
+2. edit .env -> 
+        GOOGLE_CLIENT_ID="784573559341-jfrssvvqdc1kaklbrq3pdhteensctc7f.apps.googleusercontent.com"
+        CLIENT_SECRET="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"
+3. edit config/servic.php -> 
+        'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('CLIENT_SECRET'),
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback'
+    ],
+4. composer require laravel/socialite
+5. edit config/app.php -> 
+        'providers' => [
+            Laravel\Socialite\SocialiteServiceProvider::class,
+        ],
+        'aliases' => [
+            comment in 'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+            'Socialite' => Laravel\Support\Facades\Socialite::class,
+        ]
+6. install laravel breeze
+7. configgure at client id and serect key in github account 
+8. edit .env ->
+9. edit web.php ->
+10. make controller under in Auth function -> php artisan make:controller Auth/ProviderController
+11. edit ProviderController.php ->
+12. Edit auth/login.blade.php ->
+        <a href="/auth/github/redirect">Login Github</a>
+        <a href="/auth/google/redirect">Login Google</a>
+13. edit model User table migration
+14. edit model User.php

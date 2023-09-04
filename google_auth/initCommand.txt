@@ -1,0 +1,39 @@
+1. configgure in console.cloud.google -> oauthClientid
+2. edit .env -> 
+        GOOGLE_CLIENT_ID="784573559341-jfrssvvqdc1kaklbrq3pdhteensctc7f.apps.googleusercontent.com"
+        CLIENT_SECRET="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"
+3. edit config/servic.php -> 
+        'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('CLIENT_SECRET'),
+        'redirect' => env('http://127.0.0.1:8000/auth/google/callback')
+    ],
+4. composer require laravel/socialite
+5. edit config/app.php -> 
+        'providers' => [
+            Laravel\Socialite\SocialiteServiceProvider::class,
+        ],
+        'aliases' => [
+            comment in 'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+            'Socialite' => Laravel\Support\Facades\Socialite::class,
+        ]
+6. php artisan migrate
+7. Add 'google_id' column in users table using migration
+8. edit app/models/User.php ->
+        protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'google_id'
+    ];
+9. php artisan make:controller GoogleController
+10. edit route/web.php -> 
+        
+11.create Blade file -> home.blade.php
+12. edit welcome.blade.php -> 
+13. edit GoogleController.php ->
+14. php artisan optimize
+15. php artisan config:clear
+16. edit GoogleController.php ->
+17. php artisan optimize
+18. php artisan config:clear
