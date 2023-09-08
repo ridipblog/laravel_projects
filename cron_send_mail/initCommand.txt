@@ -1,0 +1,12 @@
+1. create command -> php artisan make:command SendMail
+2. edit App/Console/Commands/SendMail.php ->
+3. create a model -> php artisan make:model Employes
+4. check command registration -> php artisan
+5. migrate database 
+6.  setup mail configuration in .env file
+7. config clear after setup .env -> php artisan config:clear
+8. create folder under  resources/view/ -> emails
+9. create file under resources/view/emails -> email.blade.php
+10. Edit App/Console/kernel.php -> 
+11. execute cron -> php artisan employes:SendMail
+12. Schedule cron -> php artisan schedule:run
