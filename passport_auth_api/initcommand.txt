@@ -1,0 +1,35 @@
+1. composer require laravel/passport --with-all-dependencies
+2. php artsian migrate
+3. php artisan passport:install
+4. edit app/model/User.php ->
+4. edit app/providers/authservicProvider.php ->
+5. edit app/config/auth.php ->
+            'guards' => [
+                'web' => [
+                    'driver' => 'session',
+                    'provider' => 'users',
+                ],
+                'api' => [
+                    'driver' => 'passport',
+                    'provider' => 'users'
+                ],
+            ],
+6. Edit api.php ->
+
+7. php artisan make:controller API\AuthController
+8.php artisan optimize
+9.in postmen -> 
+    1. Register -> http://localhost:8000/api/register
+    2. Login -> http://localhost:8000/api/login
+10. if you want to use another table then write this code in config/auth.php ->
+            'providers' => [
+                'users' => [
+                    'driver' => 'eloquent',
+                    'model' => App\Models\Employe::class,
+                ],
+
+            // 'users' => [
+            //     'driver' => 'database',
+            //     'table' => 'employe',
+            // ],
+            ],
