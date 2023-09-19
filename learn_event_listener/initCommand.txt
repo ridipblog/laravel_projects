@@ -1,0 +1,12 @@
+1. Create COntroller 
+2. Create A Route
+3. Setup Database And Email Servise
+4. create a event ->
+    php artisan make:event SendMail
+5. Edit App/Events/SendMail.php ->
+6. create Listener And Attach Your Event With This -> php artisan make:listener SendMailFired --event="SendMail"
+7. Edit App/Listener/SendMailFired.php ->
+8. Edit App/Providers/EventServiceProver.php-> 
+    SendMail::class => [
+            SendMailFired::class
+        ]
