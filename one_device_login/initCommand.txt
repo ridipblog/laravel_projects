@@ -1,0 +1,8 @@
+1.composer require laravel/ui
+2. php artisan ui bootstrap --auth
+3. npm install
+4. npm run dev -> 2 times
+5. php artisan migrate
+6. Edit app/http/auth/loginController.php ->
+7. Edit kernel.php -> 
+    \Illuminate\Session\Middleware\AuthenticateSession::class, -> un comment this line
