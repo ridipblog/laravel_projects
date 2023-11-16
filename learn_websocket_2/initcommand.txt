@@ -1,0 +1,48 @@
+1 . composer require beyondcode/laravel-websockets -w
+2. php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
+3. php artisan migrate
+4. php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"
+5. composer require pusher/pusher-php-server
+6. change in .env file -> BROADCAST_DRIVER=pusher
+7. change in /config/broadcasting.php ->
+        'cluster' => env('PUSHER_APP_CLUSTER'),
+        'useTLS' => true,
+        'host' => '127.0.0.1',
+        'port' => 6001,
+        'scheme' => 'http'
+8. chnage in .env file ->
+        PUSHER_APP_ID=123232
+        PUSHER_APP_KEY=dfsjkhfd
+        PUSHER_APP_SECRET=dsdjks
+9. start web socket server -> php artisan websockets:serve
+10. composer require pusher/pusher-php-server
+11. make a event -> php artisan make:event TestData
+12. change in /App/Events/TestData.php ->
+13 If You Run Event By Tinker ->
+        php artisan tinker
+        event (new \App\Events\TestData('New Message'))
+14. npm install
+15. npm i laravel-mix
+16. npm install --save-dev laravel-echo pusher-js
+17. npm i tailwindcss
+18. npm i @tailwindcss/forms
+19. change in /resource/js/boostrap.js ->
+    key: 'dfsjkhfd',
+    cluster: mt1,
+    forceTLS: false,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    disableStats: true
+20. copy webpack.mix.js and tailwind.config.js
+21. npm run dev
+
+For Private Channel
+22. change in /config/app.php ->
+    App\Providers\BroadcastServiceProvider::class, uncomment this line
+23. php artisan config:cahce
+24 .php artisan config:clear
+
+
+To Use Auth With install laravel breeze ->
+    composer require laravel/ui
+    php artisan ui vue --auth
