@@ -7,16 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<script src="{{ asset('js/app.js') }}"></script>
 
 <body>
-    <p>
-        Real Time Data <span id="data"></span>
-    </p>
-    <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        {{--  publich channel run  --}}
-        Echo.channel('testDataChannel').listen('TestData', (e) => {
-            document.getElementById('data').innerHTML = e.data;
+        Echo.private('privent_text').listen('PriventMessage', (e) => {
+            {{-- document.getElementById('data').innerHTML = e.message; --}}
+            console.log(e.message);
         });
     </script>
 </body>

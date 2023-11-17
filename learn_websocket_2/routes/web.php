@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TestMessage;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,10 @@ Route::get('/', function () {
 // Test Message Route
 Route::get('/sent', [TestMessage::class, 'index']);
 Route::get('/sent_test_message', [TestMessage::class, 'sent_test_message']);
-
-Auth::routes();
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/registration', [LoginController::class, 'register']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/login_dash', [LoginController::class, 'login_dash'])->middleware(['auth']);
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
