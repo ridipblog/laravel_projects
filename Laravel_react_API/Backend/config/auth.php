@@ -40,10 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'employe' => [
+            'driver' => 'session',
+            'provider' => 'employes'
+        ],
         'api' => [
             'driver' => 'passport',
             'provider' => 'users'
         ],
+        'employe_api' => [
+            'driver' => 'passport',
+            'provider' => 'employes'
+        ]
     ],
 
     /*
@@ -69,11 +77,11 @@ return [
             'model' => App\Models\AdminModel::class,
             'table' => 'users'
         ],
-        // 'admins' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\AdminModel::class,
-        //     'table' => 'admin'
-        // ]
+        'employes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\EmployeModel::class,
+            'table' => 'employe'
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
