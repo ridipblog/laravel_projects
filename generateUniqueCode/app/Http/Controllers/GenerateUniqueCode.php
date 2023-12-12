@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 use function PHPSTORM_META\type;
@@ -42,5 +43,24 @@ class GenerateUniqueCode extends Controller
             $check = false;
         }
         dd($id);
+    }
+    public function register(Request $request)
+    {
+        $error_message = [
+            "required" => ':attribute Is Required',
+        ];
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'email_id' => 'required'
+            ],
+            $error_message
+        );
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->all()]);
+        } else {
+            return response()->json(['message' => 'ok']);
+        }
     }
 }
