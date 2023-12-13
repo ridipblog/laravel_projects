@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APICallController;
 use App\Http\Controllers\GenerateUniqueCode;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::get(
     '/generate-unique-code',
     [GenerateUniqueCode::class, 'index']
 );
+
+Route::get('/api-hit', [APICallController::class, 'apiHit']);
