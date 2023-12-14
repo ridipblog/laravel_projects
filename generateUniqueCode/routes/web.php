@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\APICallController;
 use App\Http\Controllers\GenerateUniqueCode;
+use App\Http\Controllers\RegistrationStudentController;
 use Illuminate\Support\Facades\Route;
 
 /*

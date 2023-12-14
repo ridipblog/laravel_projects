@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\APICallController;
 use App\Http\Controllers\GenerateUniqueCode;
+use App\Http\Controllers\RegistrationStudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/validate', [GenerateUniqueCode::class, 'register']);
 Route::get('/get-data', [APICallController::class, 'getData']);
 Route::post('/post-data', [APICallController::class, 'postData']);
+
+Route::post('add-student', [RegistrationStudentController::class, 'addStudent']);
