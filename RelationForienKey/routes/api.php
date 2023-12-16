@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WritterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/add-writter', [WritterController::class, 'addWritter']);
 Route::post('/delete-writter', [WritterController::class, 'deleteWritter']);
+
+Route::post('/add-student', [StudentController::class, 'addStudent']);
