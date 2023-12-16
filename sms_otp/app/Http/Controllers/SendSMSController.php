@@ -12,6 +12,7 @@ class SendSMSController extends Controller
         $sid = env('TWILIO_SID');
         $token = env('TWILIO_AUTH_TOKEN');
         $twilioPhoneNumber = env('TWILIO_PHONE_NUMBER');
+        // $twilioPhoneNumber = '+12058595933';
         $client = new Client($sid, $token);
 
         $toPhoneNumber = "+917002142698"; // Replace with the recipient's phone number
