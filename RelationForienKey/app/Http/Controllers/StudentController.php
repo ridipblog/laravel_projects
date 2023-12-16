@@ -8,6 +8,7 @@ use App\Models\StduentTopicModel;
 use App\Models\StudentModel;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -15,20 +16,37 @@ class StudentController extends Controller
     {
         $message = [];
         $stduent_data = [
-            "name" => $request->name
+            [
+                "name" => $request->name
+            ]
         ];
         $student_bank_data = [
-            'student_id' => null,
-            'account_number' => $request->account_number
+            [
+                'student_id' => null,
+                'account_number' => $request->account_number
+            ]
         ];
         $student_education_data = [
-            'student_id' => null,
-            'board_name' => $request->board_name
+            [
+                'student_id' => null,
+                'board_name' => $request->board_name
+            ]
         ];
         $student_topic_data = [
-            'student_id' => null,
-            'topic' => $request->topic
+            [
+                'student_id' => null,
+                'topic' => $request->topic_1
+            ],
+            [
+                'student_id' => null,
+                'topic' => $request->topic_2
+            ],
+            [
+                'student_id' => null,
+                'topic' => $request->topic_3
+            ],
         ];
+
         $models = [
             serialize($stduent_data) => new StudentModel(),
             serialize($student_bank_data) => new StduentBankModel(),
@@ -38,25 +56,45 @@ class StudentController extends Controller
         $count_model = 0;
         $check = false;
         $save_student = null;
+        $topic_filter = [
+            true,
+            true
+        ];
         foreach ($models as $model_key => $model_value) {
             $model_key = unserialize($model_key);
-            try {
-                if ($count_model != 0) {
-                    $model_key['student_id'] = $save_student['id'];
+            $count_data = 0;
+            foreach ($model_key as $model_data) {
+                $check_input = true;
+                try {
+                    if ($count_model != 0) {
+                        $model_data['student_id'] = $save_student['id'];
+                    } else {
+                        $model_data['name'] = $model_data['name'] . strval(DB::select('select id from student') == null ? 0 : DB::select('select id from student order by id desc limit 1')[0]->id);
+                    }
+                    if ($count_data == 1 || $count_data == 2) {
+                        $check_input = $topic_filter[$count_data - 1];
+                    }
+                    if ($check_input) {
+                        $save_data = $model_value::create(
+                            $model_data
+                        );
+                    }
+                    if ($count_model == 0) {
+                        $save_student = $save_data;
+                    }
+                    $check = true;
+                    $count_data++;
+                } catch (Exception $err) {
+                    $check = false;
+                    if ($count_model != 0) {
+                        $this->deleteStudent($save_student['id']);
+                    }
+                    break;
                 }
-                $save_data = $model_value::create(
-                    $model_key
-                );
-                if ($count_model == 0) {
-                    $save_student = $save_data;
-                }
+            }
+            if ($check) {
                 $count_model++;
-                $check = true;
-            } catch (Exception $err) {
-                $check = false;
-                if ($count_model != 0) {
-                    $this->deleteStudent($save_student['id']);
-                }
+            } else {
                 break;
             }
         }
