@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompressImageController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WritterController;
 use Illuminate\Http\Request;
@@ -23,3 +24,5 @@ Route::post('/add-writter', [WritterController::class, 'addWritter']);
 Route::post('/delete-writter', [WritterController::class, 'deleteWritter']);
 
 Route::post('/add-student', [StudentController::class, 'addStudent']);
+
+Route::post('/compress-image', [CompressImageController::class, 'compressImage']);
