@@ -7,10 +7,10 @@
     </thead>
     <tbody>
         @foreach ($students as $student)
-            <tr>
-                <td>{{ $student->emp_code }}</td>
-                <td>{{ $student->employe_name }}</td>
-            </tr>
+        <tr>
+            <td>{{ $student->emp_code }}</td>
+            <td>{{ $student->employe_name }}</td>
+        </tr>
         @endforeach
     </tbody>
 </table>
