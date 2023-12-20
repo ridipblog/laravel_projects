@@ -3,6 +3,7 @@
 use App\Http\Controllers\APICallController;
 use App\Http\Controllers\GenerateUniqueCode;
 use App\Http\Controllers\RegistrationStudentController;
+use App\Http\Controllers\SoftwareDeveloperController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,8 @@ Route::get('/get-data', [APICallController::class, 'getData']);
 Route::post('/post-data', [APICallController::class, 'postData']);
 
 Route::post('add-student', [RegistrationStudentController::class, 'addStudent']);
+
+// Add Software Developers
+Route::get('/add-data', [SoftwareDeveloperController::class, 'addData']);
+// Search By One Input
+Route::post('/search-by-one-input', [SoftwareDeveloperController::class, 'searchByOneInput']);
