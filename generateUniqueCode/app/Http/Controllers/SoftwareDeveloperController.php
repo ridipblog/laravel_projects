@@ -54,31 +54,42 @@ class SoftwareDeveloperController extends Controller
             )
             ->get();
         $filter_data = [];
-        $text = "";
+        $search_keys = [
+            'emp_code',
+            'email',
+            'phone_number',
+            'designation_name'
+
+        ];
         foreach ($all_data as $data) {
-            $count_search_query = 0;
-            $temp_string = "";
-            $current_value = $data->emp_code;
-            if (strlen($current_value) >= strlen($search_query)) {
-                for ($i = 0; $i < strlen($current_value); $i++) {
-                    if ($count_search_query < strlen($search_query)) {
-                        if ($current_value[$i] == $search_query[$count_search_query]) {
-                            $temp_string .= $search_query[$count_search_query];
-                            $count_search_query++;
-                        } else {
-                            if ($count_search_query != 0) {
-                                break;
+            foreach ($search_keys as $search_key) {
+                $count_search_query = 0;
+                $temp_string = "";
+                // $data = json_decode(json_encode($data), true);
+                $data = (array)$data;
+                $current_value = $data[$search_key];
+                if (strlen($current_value) >= strlen($search_query)) {
+                    for ($i = 0; $i < strlen($current_value); $i++) {
+                        if ($count_search_query < strlen($search_query)) {
+                            if ($current_value[$i] == $search_query[$count_search_query]) {
+                                $temp_string .= $search_query[$count_search_query];
+                                $count_search_query++;
+                            } else {
+                                if ($count_search_query != 0) {
+                                    break;
+                                }
                             }
+                        } else {
+                            break;
                         }
-                    } else {
+                    }
+                    if ($temp_string == $search_query) {
+                        array_push($filter_data, (object)$data);
                         break;
                     }
                 }
-                if ($temp_string == $search_query) {
-                    array_push($filter_data, $data);
-                }
             }
         }
-        return response()->json(['message' => count($filter_data)]);
+        return response()->json(['count' => count($filter_data), 'data' => $filter_data]);
     }
 }
