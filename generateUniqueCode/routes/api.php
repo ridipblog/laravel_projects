@@ -31,3 +31,4 @@ Route::post('add-student', [RegistrationStudentController::class, 'addStudent'])
 Route::get('/add-data', [SoftwareDeveloperController::class, 'addData']);
 // Search By One Input
 Route::post('/search-by-one-input', [SoftwareDeveloperController::class, 'searchByOneInput']);
+Route::post('/search-by-one-input_2', [SoftwareDeveloperController::class, 'searchByOneInput_2']);

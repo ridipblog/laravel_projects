@@ -42,4 +42,43 @@ class SoftwareDeveloperController extends Controller
             ->count();
         return response()->json(['message' => $data]);
     }
+    public function searchByOneInput_2(Request $request)
+    {
+        $search_query = $request->search_query;
+        $all_data = DB::table('software_developer as main_table')
+            ->join('designations as desig_table', 'desig_table.id', '=', 'main_table.designation_id')
+            ->select(
+                'main_table.*',
+                'main_table.id as main_id',
+                'desig_table.*'
+            )
+            ->get();
+        $filter_data = [];
+        $text = "";
+        foreach ($all_data as $data) {
+            $count_search_query = 0;
+            $temp_string = "";
+            $current_value = $data->emp_code;
+            if (strlen($current_value) >= strlen($search_query)) {
+                for ($i = 0; $i < strlen($current_value); $i++) {
+                    if ($count_search_query < strlen($search_query)) {
+                        if ($current_value[$i] == $search_query[$count_search_query]) {
+                            $temp_string .= $search_query[$count_search_query];
+                            $count_search_query++;
+                        } else {
+                            if ($count_search_query != 0) {
+                                break;
+                            }
+                        }
+                    } else {
+                        break;
+                    }
+                }
+                if ($temp_string == $search_query) {
+                    array_push($filter_data, $data);
+                }
+            }
+        }
+        return response()->json(['message' => count($filter_data)]);
+    }
 }
