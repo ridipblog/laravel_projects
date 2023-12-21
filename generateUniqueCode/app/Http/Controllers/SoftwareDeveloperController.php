@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Doctrine\DBAL\Query;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -91,5 +92,29 @@ class SoftwareDeveloperController extends Controller
             }
         }
         return response()->json(['count' => count($filter_data), 'data' => $filter_data]);
+    }
+    // Search By District Block GP
+    public function searchByDistrictBlockGP(Request $request)
+    {
+
+        // $sub_query_1 = DB::table('software_developer')
+        //     ->where('email', 'email1@gmail.com')
+        //     ->select('email');
+
+        // $data = $query
+        //     ->where('emp_code', 'emp_code1')
+        //     ->whereIn('email', $sub_query_1)
+        //     ->get();
+
+        $data = DB::select(
+            'select *
+            case
+            when emp_code = "emp_code1" then "Ok"
+            end as text
+            from software_developer
+            '
+        );
+
+        return response()->json(['count' => count($data), 'data' => $data]);
     }
 }

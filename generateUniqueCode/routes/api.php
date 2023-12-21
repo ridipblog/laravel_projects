@@ -32,3 +32,6 @@ Route::get('/add-data', [SoftwareDeveloperController::class, 'addData']);
 // Search By One Input
 Route::post('/search-by-one-input', [SoftwareDeveloperController::class, 'searchByOneInput']);
 Route::post('/search-by-one-input_2', [SoftwareDeveloperController::class, 'searchByOneInput_2']);
+
+// Search By District Block GP
+Route::post('/search-by-district-block-gp', [SoftwareDeveloperController::class, 'searchByDistrictBlockGP']);
