@@ -96,24 +96,15 @@ class SoftwareDeveloperController extends Controller
     // Search By District Block GP
     public function searchByDistrictBlockGP(Request $request)
     {
+        $query = DB::table('software_developer');
+        $sub_query_1 = DB::table('software_developer')
+            ->where('email', 'email1@gmail.com')
+            ->select('email');
 
-        // $sub_query_1 = DB::table('software_developer')
-        //     ->where('email', 'email1@gmail.com')
-        //     ->select('email');
-
-        // $data = $query
-        //     ->where('emp_code', 'emp_code1')
-        //     ->whereIn('email', $sub_query_1)
-        //     ->get();
-
-        $data = DB::select(
-            'select *
-            case
-            when emp_code = "emp_code1" then "Ok"
-            end as text
-            from software_developer
-            '
-        );
+        $data = $query
+            ->where('emp_code', 'emp_code1')
+            ->whereIn('email', $sub_query_1)
+            ->get();
 
         return response()->json(['count' => count($data), 'data' => $data]);
     }
