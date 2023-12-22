@@ -4,6 +4,7 @@ use App\Http\Controllers\APICallController;
 use App\Http\Controllers\GenerateUniqueCode;
 use App\Http\Controllers\RegistrationStudentController;
 use App\Http\Controllers\SoftwareDeveloperController;
+use App\Http\Controllers\WebDeveloperController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +36,6 @@ Route::post('/search-by-one-input_2', [SoftwareDeveloperController::class, 'sear
 
 // Search By District Block GP
 Route::post('/search-by-district-block-gp', [SoftwareDeveloperController::class, 'searchByDistrictBlockGP']);
+
+// Callback And Commit With DB
+Route::get('/db-transation', [WebDeveloperController::class, 'addData']);
