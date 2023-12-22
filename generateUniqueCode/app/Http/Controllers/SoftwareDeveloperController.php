@@ -96,16 +96,53 @@ class SoftwareDeveloperController extends Controller
     // Search By District Block GP
     public function searchByDistrictBlockGP(Request $request)
     {
-        $query = DB::table('software_developer');
-        $sub_query_1 = DB::table('software_developer')
-            ->where('email', 'email1@gmail.com')
-            ->select('email');
+        // $query = DB::table('software_developer');
+        // $sub_query_1 = DB::table('software_developer')
+        //     ->where('email', 'email1@gmail.com')
+        //     ->select('email');
 
-        $data = $query
-            ->where('emp_code', 'emp_code1')
-            ->whereIn('email', $sub_query_1)
-            ->get();
+        // $data = $query
+        //     ->where('emp_code', 'emp_code1')
+        //     ->whereIn('email', $sub_query_1)
+        //     ->get();
 
-        return response()->json(['count' => count($data), 'data' => $data]);
+        // return response()->json(['count' => count($data), 'data' => $data]);
+
+        // ------------------------------Second Approch-----------------------------------
+
+        // $usersQuery = DB::table('software_developer');
+        // $emp_code = "emp_code1";
+        // $email = "email1@gmail.com";
+        // $phone = "1234441";
+        // if ($emp_code) {
+        //     $usersQuery->where('emp_code', $emp_code);
+        // }
+
+        // if ($email) {
+        //     $usersQuery->Where('email', $email);
+        // }
+
+        // if ($phone) {
+        //     $usersQuery->Where('phone_number', $phone);
+        // }
+
+        // notes ---------------------------------Thrid Approch--------------------------------------
+        // $users = $usersQuery
+        //     ->get();
+        // $search_keys = [
+        //     'emp_code' => 'emp_code1',
+        //     'email' => 'email1@gmail.com',
+        //     'phone_number' => ''
+        // ];
+        // $usersQuery = DB::table('software_developer');
+        // foreach ($search_keys as $search_key => $search_value) {
+        //     if ($search_value) {
+        //         $usersQuery->where($search_key, $search_value);
+        //     }
+        // }
+        // $users = $usersQuery->get();
+
+        // return response()->json(['data' => $users, 'count' => count($users)]);
+
     }
 }
