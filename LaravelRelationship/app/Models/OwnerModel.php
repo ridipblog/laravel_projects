@@ -13,4 +13,8 @@ class OwnerModel extends Model
         'owner',
         'car_model_id'
     ];
+    public function car()
+    {
+        return $this->belongsTo(CarModel::class, 'car_model_id');
+    }
 }

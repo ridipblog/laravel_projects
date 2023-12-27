@@ -16,4 +16,8 @@ class MachenicModel extends Model
     {
         return $this->hasOne(CarModel::class);
     }
+    public function owner()
+    {
+        return $this->hasOneThrough(OwnerModel::class, CarModel::class);
+    }
 }

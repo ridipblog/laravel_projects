@@ -17,4 +17,8 @@ class CarModel extends Model
     {
         return $this->hasOne(OwnerModel::class);
     }
+    public function machenic()
+    {
+        return $this->belongsTo(MachenicModel::class, 'machenic_model_id');
+    }
 }

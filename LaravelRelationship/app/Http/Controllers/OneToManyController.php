@@ -43,8 +43,10 @@ class OneToManyController extends Controller
         $blogger = BloggerModel::with('posts')->find(5);
         // Get all posts id
         $postID = $blogger->posts->pluck('id')->toArray();
+        // Get All Posts
         $all_blogger = BloggerModel::find(5)->posts;
+        // get blogger by posts id
         $posts = PostsModel::with('blogger')->find(8);
-        return response()->json(['message' => $blogger]);
+        return response()->json(['message' => $posts]);
     }
 }
