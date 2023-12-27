@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\OneToOneController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,6 @@ Route::get('/one-to-one-example1', [OneToOneController::class, 'create_example_1
 Route::get('/one-to-one-example2', [OneToOneController::class, 'create_example_2']);
 Route::get('/one-to-one-example3', [OneToOneController::class, 'read_data_example1']);
 Route::get('/one-to-one-example4', [OneToOneController::class, 'read_data_example2']);
+// One To Many Relationship
+Route::get('/one-to-many-relationship', [OneToManyController::class, 'create_example_1']);
+Route::get('/one-to-many-example2', [OneToManyController::class, 'read_data_example1']);

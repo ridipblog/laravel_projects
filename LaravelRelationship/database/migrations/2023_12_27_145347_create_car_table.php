@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blogger', function (Blueprint $table) {
+        Schema::create('car', function (Blueprint $table) {
             $table->id();
-            $table->string('bloger_name');
+            $table->string('car');
+            $table->unsignedBigInteger('machenic_model_id');
+            $table->foreign('machenic_model_id')
+                ->references('id')
+                ->on('machenic')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogger');
+        Schema::dropIfExists('car');
     }
 };
