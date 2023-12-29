@@ -2,7 +2,7 @@
 
 use App\Models\TeacherModel;
 use App\Models\User;
-// use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\App;
 
 return [
 
@@ -86,7 +86,7 @@ return [
         ],
         'teachers' => [
             'driver' => 'eloquent',
-            'model' => \App\Models\TeacherModel::class
+            'model' => TeacherModel::class
         ],
         'students' => [
             'driver' => 'eloquent',
