@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('add-data', [UsersController::class, 'addData']);
 Route::get('users/export/', [UsersController::class, 'export']);
 Route::get('users/view-export/', [ExcelController::class, 'view_export']);

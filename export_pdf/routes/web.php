@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeePDFController;
 use App\Http\Controllers\MakePDFController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,8 @@ Route::get('/', function () {
 });
 Route::get('/view', [MakePDFController::class, 'export_pdf']);
 Route::get('/export', [MakePDFController::class, 'createPDF']);
+Route::get(
+    '/add-data',
+    [EmployeePDFController::class, 'addData']
+);
+Route::get('employee-export-pdf', [EmployeePDFController::class, 'employeePDFExport']);
