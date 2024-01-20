@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PracticDatatableServerController;
+use App\Http\Controllers\PracticDattableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// -----------------DataTable with ajax Pratic -------------------
+Route::get('/datatable-add', [PracticDattableController::class, 'addData']);
+Route::get('/load-page-with-ajax', [PracticDattableController::class, 'index']);
+Route::get('/get-data-with-ajax', [PracticDattableController::class, 'getData']);
+// -----------------DataTable with Server Pratic -------------------
+
+Route::get('/load-data-with-server', [PracticDatatableServerController::class, 'index']);
+Route::get('/get-data-with-server', [PracticDatatableServerController::class, 'getData']);
