@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ManualDatableController;
 use App\Http\Controllers\PracticDatatableServerController;
 use App\Http\Controllers\PracticDattableController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,9 @@ Route::get('/get-data-with-ajax', [PracticDattableController::class, 'getData'])
 
 Route::get('/load-data-with-server', [PracticDatatableServerController::class, 'index']);
 Route::get('/get-data-with-server', [PracticDatatableServerController::class, 'getData']);
+
+// -----------------Manual Datatbale  -------------------
+Route::get('/manual-datatbale-load', [ManualDatableController::class, 'index']);
+Route::get('/load-manual-data', [ManualDatableController::class, 'loadData']);
+Route::get('/load-page-manual-data', [ManualDatableController::class, 'loadPageData']);
+Route::get('/search-manual-data', [ManualDatableController::class, 'searchData']);
